@@ -21,7 +21,8 @@ def character(name: Optional[str] = None ):
         response_json = json.loads(response.text)
         
         with open('data.json', 'w') as file:
-            json.dump(response_json,file,indent=4)
+            pass
+           # json.dump(response_json,file,indent=4)
         
         namefile = time.ctime()  
             
