@@ -10,69 +10,93 @@ from typing import Optional
 app = FastAPI()
 
 
-@app.get('/name')
-def character(name: Optional[str] = None ):
-    
-    url = 'https://rickandmortyapi.com/api/character/'
-    arg = {'name': name}
+@app.get("/name")
+def character(name: Optional[str] = None):
+    """character
+
+    Args:
+        name (character name) : character name
+
+    Returns:
+        _type_: json object with character data
+    """
+
+    url = "https://rickandmortyapi.com/api/character/"
+    arg = {"name": name}
     response = requests.get(url, params=arg)
-    
+
     if response.status_code == 200:
         response_json = json.loads(response.text)
-        
-        with open('data.json', 'w') as file:
-           json.dump(response_json,file,indent=4)
-        
-        namefile = time.ctime()  
-            
-        with zipfile.ZipFile(f' character {namefile}.zip','w') as fzip:
-            fzip.write('data.json')
-            remove('data.json')   
-            
-        
+
+        with open("data.json", "w") as file:
+            json.dump(response_json, file, indent=4)
+
+        namefile = time.ctime()
+
+        with zipfile.ZipFile(f" character {namefile}.zip", "w") as fzip:
+            fzip.write("data.json")
+            remove("data.json")
+
         return response_json
-    
-@app.get('/location')   
-def location(location: Optional[str] = None ):
-    
-    url = 'https://rickandmortyapi.com/api/location/'
-    arg = {'name': location}
+
+
+@app.get("/location")
+def location(location: Optional[str] = None):
+    """location
+
+
+    Args:
+        location (location name) : location name
+
+    Returns:
+        _type_: json object with location data
+
+    """
+
+    url = "https://rickandmortyapi.com/api/location/"
+    arg = {"name": location}
     response = requests.get(url, params=arg)
-    
+
     if response.status_code == 200:
         response_json = json.loads(response.text)
-        
-        with open('data.json', 'w') as file:
-            json.dump(response_json,file,indent=4)
-        
-        namefile = time.ctime()  
-            
-        with zipfile.ZipFile(f' location {namefile}.zip','w') as fzip:
-            fzip.write('data.json') 
-            remove('data.json')   
-            
-        
+
+        with open("data.json", "w") as file:
+            json.dump(response_json, file, indent=4)
+
+        namefile = time.ctime()
+
+        with zipfile.ZipFile(f" location {namefile}.zip", "w") as fzip:
+            fzip.write("data.json")
+            remove("data.json")
+
         return response_json
-    
-@app.get('/episode') 
-def episode(episode: Optional[str] = None ):
-    
-    url = 'https://rickandmortyapi.com/api/episode/'
-    arg = {'name': episode}
+
+
+@app.get("/episode")
+def episode(episode: Optional[str] = None):
+    """episode
+
+    Args:
+        episode (episode name) : episode name
+
+    Returns:
+        _type_: json object with episode data
+    """
+
+    url = "https://rickandmortyapi.com/api/episode/"
+    arg = {"name": episode}
     response = requests.get(url, params=arg)
-    
+
     if response.status_code == 200:
         response_json = json.loads(response.text)
-        
-        with open('data.json', 'w') as file:
-            json.dump(response_json,file,indent=4)
-        
-        namefile = time.ctime()  
-            
-        with zipfile.ZipFile(f' episode {namefile}.zip','w') as fzip:
-            fzip.write('data.json') 
-            remove('data.json')   
-            
-        
+
+        with open("data.json", "w") as file:
+            json.dump(response_json, file, indent=4)
+
+        namefile = time.ctime()
+
+        with zipfile.ZipFile(f" episode {namefile}.zip", "w") as fzip:
+            fzip.write("data.json")
+            remove("data.json")
+
         return response_json
-                
